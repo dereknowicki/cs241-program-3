@@ -2,9 +2,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import TreePackage.BinarySearchTree;
+import TreePackage.RedBlackTree;
+
 public class Main {
 	private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 	private static String [] command;
+	private static BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>();
+	private static RedBlackTree<Integer> rbt = new RedBlackTree<Integer>();
 	
 	static void printCommandMenu() {
 		System.out.println("Please Enter a Command");
