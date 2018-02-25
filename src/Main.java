@@ -34,7 +34,13 @@ public class Main {
 	}
 	
 	static void handleInsertCommand() {
-		
+		if(command.length > 1) {
+			bst.add(Integer.parseInt(command[1]));
+			rbt.add(Integer.parseInt(command[1]));
+//			System.out.println(bst.inorderTraverse());
+		} else {
+			System.out.println("Too few arguments");
+		}
 	}
 
 	static void handleDeleteCommand() {
