@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashSet;
+import java.util.Random;
 
 import TreePackage.BinarySearchTree;
 import TreePackage.RedBlackTree;
@@ -21,6 +23,19 @@ public class Main {
 		System.out.println("E: Exit the program");
 		System.out.println("H: Display this message");
 		
+	}
+	
+	static void loadTrees() {
+		Random rand = new Random();
+		HashSet<Integer> pete = new HashSet<Integer>();
+		while(pete.size() < 100) {
+			pete.add(rand.nextInt(1000));
+		}
+				
+		for(int i=0; i< pete.size(); i++) {
+			bst.add(new Integer(pete.toArray()[i].toString()));
+			rbt.add(new Integer(pete.toArray()[i].toString()));
+		}
 	}
 	
 	static void getCommand() {
@@ -60,7 +75,7 @@ public class Main {
 	}
 	
 	public static void main(String[] args) {
-		printCommandMenu();
+		loadTrees();
 		
 		while(true) {
 			printCommandMenu();
