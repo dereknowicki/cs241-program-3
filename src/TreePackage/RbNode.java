@@ -26,4 +26,12 @@ public class RbNode<T> extends BinaryNode<T> {
 	public NodeColor getNodeColor() {
 		return color;
 	}
+	
+	public RbNode<T> getLeftChild(){
+		return leftChild;
+	}
+	
+	public RbNode<T> getRightChild(){
+		return rightChild;
+	}
 }
