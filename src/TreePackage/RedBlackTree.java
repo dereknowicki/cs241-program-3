@@ -1,6 +1,41 @@
 package TreePackage;
 
 public class RedBlackTree<T> implements BinaryTreeInterface<T> {
+	protected RbNode<T> root;
+	
+	public RedBlackTree() {
+		root = null;
+	}
+	
+	public RedBlackTree(T rootData) {
+		root = new RbNode<>(rootData);
+	}
+	
+	public RedBlackTree(T rootData, RedBlackTree<T> leftTree, RedBlackTree<T> rightTree) {
+		privateSetTree(rootData, leftTree, rightTree);
+	}
+	
+	private void privateSetTree(T rootData, RedBlackTree<T> leftTree, RedBlackTree<T> rightTree) {
+		root = new RbNode<>(rootData);
+		if((leftTree != null) && !leftTree.isEmpty()) {
+			root.setLeftChild(leftTree.root);
+		}
+			
+		if((rightTree != null) && !rightTree.isEmpty()) {
+			if(rightTree != leftTree)
+				root.setRightChild(rightTree.root);
+			else
+				root.setRightChild(rightTree.root.copy());
+		}
+		
+		if((leftTree != null) && (leftTree != this)) {
+			leftTree.clear();
+		}
+		
+		if((rightTree != null) && (rightTree != this)) {
+			rightTree.clear();
+		}
+	}
 
 	@Override
 	public T getRootData() {
