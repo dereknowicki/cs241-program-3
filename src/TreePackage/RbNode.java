@@ -2,6 +2,7 @@ package TreePackage;
 
 enum NodeColor{ RED, BLACK }
 
+@SuppressWarnings("unused")
 public class RbNode<T> extends BinaryNode<T> {
 	private NodeColor color = NodeColor.BLACK;
 	private RbNode<T> leftChild;
