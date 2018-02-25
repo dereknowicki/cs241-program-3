@@ -1,6 +1,6 @@
 package TreePackage;
 
-public class RedBlackTree<T> implements BinaryTreeInterface<T> {
+public class RedBlackTree<T extends Comparable<? super T>> implements BinaryTreeInterface<T> {
 	protected RbNode<T> root;
 	
 	public RedBlackTree() {
@@ -35,6 +35,41 @@ public class RedBlackTree<T> implements BinaryTreeInterface<T> {
 		if((rightTree != null) && (rightTree != this)) {
 			rightTree.clear();
 		}
+	}
+	
+	public T add(T newEntry) {
+		T result = null;
+		if (isEmpty()) {
+			root = new RbNode<T>(newEntry);
+		} else {
+			result = addEntry(root, newEntry);
+		}
+		return result;
+	}
+	
+	private T addEntry(RbNode<T> rootNode, T newEntry) {
+		assert rootNode != null;
+		T result = null;
+		int comparison = newEntry.compareTo(rootNode.getData());
+		
+		if(comparison == 0) {
+			result = rootNode.getData();
+			rootNode.setData(newEntry);
+		}else if (comparison < 0) {
+			if(rootNode.hasLeftChild()) {
+				result = addEntry(rootNode.getLeftChild(), newEntry);
+			} else {
+				rootNode.setLeftChild(new RbNode<>(newEntry));
+			}
+		} else {
+			assert comparison > 0;
+			if(rootNode.hasRightChild()) {
+				result = addEntry(rootNode.getRightChild(), newEntry);
+			} else {
+				rootNode.setRightChild(new RbNode<>(newEntry));
+			}
+		}
+		return result;
 	}
 
 	@Override
