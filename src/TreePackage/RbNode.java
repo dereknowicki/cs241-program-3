@@ -1,3 +1,16 @@
+/****************************************************************
+ * file: RbNode.java 
+ * author: Derek Nowicki
+ * class: CS 241 – Data Structures and Algorithms II
+ * 
+ * assignment: program 3
+ * date last modified: 2018-02-26
+ * 
+ * purpose: This class extends the BinaryNode class to create a
+ * node for Red Black Tree data structures
+ * 
+ ****************************************************************/
+
 package TreePackage;
 
 enum NodeColor{ RED, BLACK }

@@ -1,3 +1,16 @@
+/****************************************************************
+ * file: BinaryNode.java 
+ * author: Derek Nowicki
+ * class: CS 241 – Data Structures and Algorithms II
+ * 
+ * assignment: program 3
+ * date last modified: 2018-02-26
+ * 
+ * purpose: This class defines a node that can be used in a 
+ * Binary Tree data structure
+ * 
+ ****************************************************************/
+
 package TreePackage;
 
 public class BinaryNode<T> {

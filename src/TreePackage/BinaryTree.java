@@ -1,3 +1,15 @@
+/****************************************************************
+ * file: BinaryTree.java 
+ * author: Derek Nowicki
+ * class: CS 241 – Data Structures and Algorithms II
+ * 
+ * assignment: program 3
+ * date last modified: 2018-02-26
+ * 
+ * purpose: This class defines a Binary Tree data structure
+ * 
+ ****************************************************************/
+
 package TreePackage;
 
 import java.util.ArrayList;

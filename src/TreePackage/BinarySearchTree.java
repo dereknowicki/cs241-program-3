@@ -1,3 +1,15 @@
+/****************************************************************
+ * file: BinarySearchTree.java 
+ * author: Derek Nowicki
+ * class: CS 241 – Data Structures and Algorithms II
+ * 
+ * assignment: program 3
+ * date last modified: 2018-02-26
+ * 
+ * purpose: This class defines a Binary Search Tree data structure
+ * 
+ ****************************************************************/
+
 package TreePackage;
 
 public class BinarySearchTree<T extends Comparable<? super T>> extends BinaryTree<T> implements SearchTreeInterface<T> {

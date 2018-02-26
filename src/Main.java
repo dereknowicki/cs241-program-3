@@ -1,3 +1,17 @@
+/****************************************************************
+ * file: Main.java 
+ * author: Derek Nowicki
+ * class: CS 241 – Data Structures and Algorithms II
+ * 
+ * assignment: program 3
+ * date last modified: 2018-02-26
+ * 
+ * purpose: This program fills a Binary Search Tree and a Red Black
+ * Tree with 100 random numbers. The program gives the user options
+ * for adding and deleting values and evaluating the data structures
+ * 
+ ****************************************************************/
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

@@ -1,3 +1,16 @@
+/****************************************************************
+ * file: RedBlackTree.java 
+ * author: Derek Nowicki
+ * class: CS 241 – Data Structures and Algorithms II
+ * 
+ * assignment: program 3
+ * date last modified: 2018-02-26
+ * 
+ * purpose: This class impliments the Binary Tree interface to
+ * define a Red Black Tree data structure.
+ * 
+ ****************************************************************/
+
 package TreePackage;
 
 public class RedBlackTree<T extends Comparable<? super T>> implements BinaryTreeInterface<T> {
