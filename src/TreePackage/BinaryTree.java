@@ -59,6 +59,21 @@ public class BinaryTree<T> implements BinaryTreeInterface<T>{
 		return inorderTraverse(root);
 	}
 	
+	public List<T> preorderTraverse() {
+		return preorderTraverse(root);
+	}
+	
+	private List<T> preorderTraverse(BinaryNode<T> node) {
+		List<T> traversal = new ArrayList<T>();
+		if(node != null) {
+			traversal.add(node.getData());
+			traversal.addAll(preorderTraverse(node.getLeftChild()));
+			traversal.addAll(preorderTraverse(node.getRightChild()));
+		}
+		
+		return traversal;
+	}
+	
 	private List<T> inorderTraverse(BinaryNode<T> node) {
 		List<T> inorder = new ArrayList<T>();
 		if(node != null) {
