@@ -72,7 +72,7 @@ public class RbNode<T> {
 	}
 	
 	public void setRightChild(RbNode<T> newRightChild) {
-		leftChild = newRightChild;
+		rightChild = newRightChild;
 	}
 	
 	public RbNode<T> getLeftChild(){
