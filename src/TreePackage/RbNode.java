@@ -20,7 +20,6 @@ public class RbNode<T> {
 	private NodeColor color = NodeColor.BLACK;
 	private RbNode<T> leftChild;
 	private RbNode<T> rightChild;
-	static Logger log = new Logger();
 	
 	public RbNode() {
 		this (null);
