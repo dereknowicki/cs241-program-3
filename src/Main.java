@@ -51,12 +51,6 @@ public class Main {
 			bst.add(new Integer(pete.toArray()[i].toString()));
 			rbt.add(new Integer(pete.toArray()[i].toString()));
 		}
-		Logger.println(pete);
-//		Logger.println(bst.preorderTraverse());
-//		Logger.println(rbt.preorderTraverse());
-//		Logger.println(bst.getHeight());
-//		Logger.println(rbt.getHeight());
-
 	}
 	
 	static void getCommand() {
@@ -73,7 +67,6 @@ public class Main {
 		if(command.length > 1) {
 			bst.add(Integer.parseInt(command[1]));
 			rbt.add(Integer.parseInt(command[1]));
-//			System.out.println(bst.inorderTraverse());
 		} else {
 			System.out.println("Too few arguments");
 		}
