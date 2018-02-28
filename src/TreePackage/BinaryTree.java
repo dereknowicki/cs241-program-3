@@ -109,8 +109,7 @@ public class BinaryTree<T> implements BinaryTreeInterface<T>{
 
 	@Override
 	public int getHeight() {
-		// TODO Auto-generated method stub
-		return 0;
+		return root != null ? root.getHeight() : 0;
 	}
 
 	@Override
