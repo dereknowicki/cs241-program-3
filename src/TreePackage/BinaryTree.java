@@ -15,7 +15,7 @@ package TreePackage;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BinaryTree<T> implements BinaryTreeInterface<T>{
+public class BinaryTree<T extends Comparable<? super T>> implements BinaryTreeInterface<T>{
 	/************ INSTANCE VARIABLES ************/
 	protected BinaryNode<T> root;
 	
@@ -82,6 +82,25 @@ public class BinaryTree<T> implements BinaryTreeInterface<T>{
 			inorder.addAll(inorderTraverse(node.getRightChild()));
 		}
 		return inorder;
+	}
+	
+	public List<T> getNodesInRange(T low, T high) {
+		return getNodesInRange(root, low, high);
+	}
+	
+	private List<T> getNodesInRange(BinaryNode<T> node, T low, T high) {
+		List<T> range = new ArrayList<T>();
+		if(node != null) {
+			int lowComp = low.compareTo(node.getData()); //should be positive
+			int hiComp = high.compareTo(node.getData()); //should be negative
+			if(lowComp < hiComp) {
+				range.add(node.getData());
+			}
+			range.addAll(getNodesInRange(node.getLeftChild(), low, high));
+			range.addAll(getNodesInRange(node.getRightChild(), low, high));
+		}
+		
+		return range;
 	}
 	
 	/************ PROTECTED MEMBER METHODS ************/

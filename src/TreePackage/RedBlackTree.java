@@ -60,6 +60,25 @@ public class RedBlackTree<T extends Comparable<? super T>> implements BinaryTree
 		return inorder;
 	}
 	
+	public List<T> getNodesInRange(T low, T high) {
+		return getNodesInRange(root, low, high);
+	}
+	
+	private List<T> getNodesInRange(RbNode<T> node, T low, T high) {
+		List<T> range = new ArrayList<T>();
+		if(node != null) {
+			int lowComp = low.compareTo(node.getData()); //should be positive
+			int hiComp = high.compareTo(node.getData()); //should be negative
+			if(lowComp < hiComp) {
+				range.add(node.getData());
+			}
+			range.addAll(getNodesInRange(node.getLeftChild(), low, high));
+			range.addAll(getNodesInRange(node.getRightChild(), low, high));
+		}
+		
+		return range;
+	}
+	
 	private void privateSetTree(T rootData, RedBlackTree<T> leftTree, RedBlackTree<T> rightTree) {
 		root = new RbNode<>(rootData);
 		if((leftTree != null) && !leftTree.isEmpty()) {

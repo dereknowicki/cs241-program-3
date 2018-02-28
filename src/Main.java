@@ -43,7 +43,7 @@ public class Main {
 	static void loadTrees() {
 		Random rand = new Random();
 		HashSet<Integer> pete = new HashSet<Integer>();
-		while(pete.size() < 5) {
+		while(pete.size() < 10) {
 			pete.add(rand.nextInt(1000));
 		}
 				
@@ -82,7 +82,12 @@ public class Main {
 	}
 	
 	static void handleRangeCommand() {
-		
+		if(command.length > 2) {
+			System.out.println(bst.getNodesInRange(new Integer(command[1]), new Integer(command[2])));
+			System.out.println(rbt.getNodesInRange(new Integer(command[1]), new Integer(command[2])));
+		} else {
+			System.out.println("Too few arguments");
+		}
 	}
 	
 	static void handlePreOrderDeleteCommand() {
@@ -93,7 +98,7 @@ public class Main {
 		loadTrees();
 		
 		while(true) {
-//			printCommandMenu();
+			printCommandMenu();
 			getCommand();
 			
 			switch(Character.toUpperCase(command[0].charAt(0))) {
