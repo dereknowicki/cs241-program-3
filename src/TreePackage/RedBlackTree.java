@@ -135,6 +135,71 @@ public class RedBlackTree<T extends Comparable<? super T>> implements BinaryTree
 		}
 		return result;
 	}
+	
+	protected RbNode<T> getRootNode() {
+		return root;
+	}
+	
+	protected void setRootNode(RbNode<T> rootNode) {
+		root = rootNode;
+	}
+	
+	private RbNode<T> findLargest(RbNode<T> rootNode){
+		if(rootNode.hasRightChild()) {
+			rootNode = findLargest(rootNode.getRightChild());
+		}
+		return rootNode;
+	}
+	
+	public T remove(T entry) {
+		ReturnObject oldEntry = new ReturnObject();
+		RbNode<T> newRoot = removeEntry(getRootNode(), entry, oldEntry);
+		setRootNode(newRoot);
+		return oldEntry.get();
+	}
+	
+	private RbNode<T> removeEntry(RbNode<T> rootNode, T entry, ReturnObject oldEntry){
+		if(rootNode != null) {
+			T rootData = rootNode.getData();
+			int comparison = entry.compareTo(rootData);
+			if(comparison == 0) {
+				oldEntry.set(rootData);
+				rootNode = removeFromRoot(rootNode);
+			} else if(comparison < 0) {
+				RbNode<T> leftChild = rootNode.getLeftChild();
+				rootNode.setLeftChild(removeEntry(leftChild, entry, oldEntry));
+			} else {
+				RbNode<T> rightChild = rootNode.getRightChild();
+				rootNode.setRightChild(removeEntry(rightChild, entry, oldEntry));
+			}
+		}
+		return rootNode;
+	}
+	
+	private RbNode<T> removeFromRoot(RbNode<T> rootNode){
+		if(rootNode.hasLeftChild() && rootNode.hasRightChild()) {
+			RbNode<T> leftSubtreeRoot = rootNode.getLeftChild();
+			RbNode<T> largestNode = findLargest(leftSubtreeRoot);
+			rootNode.setData(largestNode.getData());
+			rootNode.setLeftChild(removeLargest(leftSubtreeRoot));
+		} else if(rootNode.hasRightChild()) {
+			rootNode = rootNode.getRightChild();
+		} else {
+			rootNode = rootNode.getLeftChild();
+		}
+		return rootNode;
+	}
+	
+	private RbNode<T> removeLargest(RbNode<T> rootNode){
+		if(rootNode.hasRightChild()) {
+			RbNode<T> rightChild = rootNode.getRightChild();
+			rightChild = removeLargest(rightChild);
+			rootNode.setRightChild(rightChild);
+		} else {
+			rootNode = rootNode.getLeftChild();
+		}
+		return rootNode;
+	}
 
 	@Override
 	public T getRootData() {
@@ -177,5 +242,21 @@ public class RedBlackTree<T extends Comparable<? super T>> implements BinaryTree
 	@Override
 	public int getNumberOfLeaves() {
 		return root.getNumberOfLeaves();
+	}
+	
+	class ReturnObject {
+		T data;
+		
+		public ReturnObject(){
+			data = null;
+		}
+		
+		public void set(T newData) {
+			data = newData;
+		}
+		
+		public T get() {
+			return data;
+		}
 	}
 }

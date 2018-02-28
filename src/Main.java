@@ -17,7 +17,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.Random;
-
 import TreePackage.BinarySearchTree;
 import TreePackage.Logger;
 import TreePackage.RedBlackTree;
@@ -37,7 +36,8 @@ public class Main {
 		System.out.println("P: Delete first 20 entries of a pre-order traversal");
 		System.out.println("E: Exit the program");
 		System.out.println("H: Display this message");
-		
+		System.out.println("BST:"+bst.inorderTraverse());
+		System.out.println("RBT:"+rbt.inorderTraverse());
 	}
 	
 	static void loadTrees() {
@@ -54,7 +54,7 @@ public class Main {
 	}
 	
 	static void getCommand() {
-		String cmdString = "";
+		String cmdString = null;
 		try {
 			cmdString = reader.readLine();
 		} catch (IOException e) {
@@ -73,7 +73,12 @@ public class Main {
 	}
 
 	static void handleDeleteCommand() {
-		
+		if(command.length > 1) {
+			bst.remove(Integer.parseInt(command[1]));
+			rbt.remove(Integer.parseInt(command[1]));
+		} else {
+			System.out.println("Too few arguments");
+		}
 	}
 	
 	static void handleCountCommand() {
@@ -100,7 +105,7 @@ public class Main {
 		while(true) {
 			printCommandMenu();
 			getCommand();
-			
+						
 			switch(Character.toUpperCase(command[0].charAt(0))) {
 			case 'I':
 				handleInsertCommand();
