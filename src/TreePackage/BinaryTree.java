@@ -114,8 +114,7 @@ public class BinaryTree<T> implements BinaryTreeInterface<T>{
 
 	@Override
 	public int getNumberOfNodes() {
-		// TODO Auto-generated method stub
-		return 0;
+		return root.getNumberOfNodes();
 	}
 
 	@Override
