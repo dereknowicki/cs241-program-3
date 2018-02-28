@@ -85,36 +85,28 @@ public class RedBlackTree<T extends Comparable<? super T>> implements BinaryTree
 	public T add(T newEntry) {
 		T result = null;
 		if (isEmpty()) {
-//			Logger.println("tree is empty adding root ->", newEntry);
 			root = new RbNode<T>(newEntry);
 		} else {
-			
 			result = addEntry(root, newEntry);
 		}
 		return result;
 	}
 	
 	private T addEntry(RbNode<T> rootNode, T newEntry) {
-//		Logger.println("addEntry->", newEntry, "to", rootNode.data);
 		assert rootNode != null;
 		T result = null;
 		int comparison = newEntry.compareTo(rootNode.getData());
 		
 		if(comparison == 0) {
-//			Logger.println("addEntry comparison == 0");
 			result = rootNode.getData();
 			rootNode.setData(newEntry);
 		}else if (comparison < 0) {
-//			Logger.println("addEntry comparison < 0");
 			if(rootNode.hasLeftChild()) {
-//				Logger.println("addEntry hasLeftChild");
 				result = addEntry(rootNode.getLeftChild(), newEntry);
 			} else {
-//				Logger.println("addEntry hasLeftChild == false");
 				rootNode.setLeftChild(new RbNode<>(newEntry));
 			}
 		} else {
-//			Logger.println("addEntry comparison > 0");
 			assert comparison > 0;
 			if(rootNode.hasRightChild()) {
 				result = addEntry(rootNode.getRightChild(), newEntry);
