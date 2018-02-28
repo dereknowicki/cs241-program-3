@@ -16,6 +16,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 import TreePackage.BinarySearchTree;
 import TreePackage.Logger;
@@ -43,7 +44,7 @@ public class Main {
 	static void loadTrees() {
 		Random rand = new Random();
 		HashSet<Integer> pete = new HashSet<Integer>();
-		while(pete.size() < 10) {
+		while(pete.size() < 100) {
 			pete.add(rand.nextInt(1000));
 		}
 				
@@ -96,7 +97,18 @@ public class Main {
 	}
 	
 	static void handlePreOrderDeleteCommand() {
-		
+		List<Integer> bstPre = bst.preorderTraverse();
+		List<Integer> rbtPre = rbt.preorderTraverse();
+		if(!(bstPre.size() > 20) || !(rbtPre.size() > 20)) {
+			System.out.println("Not enough entries for this function");
+		} else {
+			for(Integer val: bstPre.subList(0, 20)) {
+				bst.remove(val);
+			}
+			for(Integer val: rbtPre.subList(0, 20)) {
+				rbt.remove(val);
+			}
+		}
 	}
 	
 	public static void main(String[] args) {
