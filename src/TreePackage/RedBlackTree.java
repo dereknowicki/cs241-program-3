@@ -119,8 +119,7 @@ public class RedBlackTree<T extends Comparable<? super T>> implements BinaryTree
 
 	@Override
 	public T getRootData() {
-		// TODO Auto-generated method stub
-		return null;
+		return root.getData();
 	}
 
 	@Override
@@ -130,8 +129,7 @@ public class RedBlackTree<T extends Comparable<? super T>> implements BinaryTree
 
 	@Override
 	public int getNumberOfNodes() {
-		// TODO Auto-generated method stub
-		return 0;
+		return root.getNumberOfNodes();
 	}
 
 	@Override

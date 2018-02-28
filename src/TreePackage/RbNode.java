@@ -112,4 +112,16 @@ public class RbNode<T> {
 		
 		return leaves;
 	}
+	
+	public int getNumberOfNodes() {
+		int leftNum = 0;
+		int rightNum = 0;
+		if(leftChild != null) {
+			leftNum = leftChild.getNumberOfNodes();
+		}
+		if(rightChild != null) {
+			rightNum = rightChild.getNumberOfNodes();
+		}
+		return leftNum + rightNum + 1;
+	}
 }
