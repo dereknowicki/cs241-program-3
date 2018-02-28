@@ -15,10 +15,12 @@ package TreePackage;
 
 enum NodeColor{ RED, BLACK }
 
-public class RbNode<T> extends BinaryNode<T> {
+public class RbNode<T> {
+	protected T data;
 	private NodeColor color = NodeColor.BLACK;
 	private RbNode<T> leftChild;
 	private RbNode<T> rightChild;
+	static Logger log = new Logger();
 	
 	public RbNode() {
 		this (null);
@@ -34,8 +36,43 @@ public class RbNode<T> extends BinaryNode<T> {
 		rightChild = newRightChild;
 	}
 	
+	public RbNode<T> copy(){
+		RbNode<T> newRoot = new RbNode<>(data);
+		if(leftChild != null) {
+			newRoot.setLeftChild(leftChild.copy());
+		}
+		if(rightChild != null) {
+			newRoot.setRightChild(rightChild.copy());
+		}
+		return newRoot;
+	}
+	
+	public boolean hasLeftChild() {
+		return leftChild != null;
+	}
+	
+	public boolean hasRightChild() {
+		return rightChild != null;
+	}
+	
 	public NodeColor getNodeColor() {
 		return color;
+	}
+	
+	public T getData() {
+		return data;
+	}
+	
+	public void setData(T newData) {
+		data = newData;
+	}
+	
+	public void setLeftChild(RbNode<T> newLeftChild) {
+		leftChild = newLeftChild;
+	}
+	
+	public void setRightChild(RbNode<T> newRightChild) {
+		leftChild = newRightChild;
 	}
 	
 	public RbNode<T> getLeftChild(){
