@@ -4,7 +4,7 @@
  * class: CS 241 – Data Structures and Algorithms II
  * 
  * assignment: program 3
- * date last modified: 2018-02-26
+ * date last modified: 2018-02-28
  * 
  * purpose: This class defines a Binary Search Tree data structure
  * 
@@ -25,6 +25,13 @@ public class BinarySearchTree<T extends Comparable<? super T>> extends BinaryTre
 	
 	
 	/************ MEMBER METHODS ************/
+	/**
+	 * method: addEntry
+	 * @param rootNode
+	 * @param newEntry
+	 * @return
+	 * purpose: adds an entry to the search tree
+	 */
 	private T addEntry(BinaryNode<T> rootNode, T newEntry) {
 		assert rootNode != null;
 		T result = null;
@@ -50,6 +57,14 @@ public class BinarySearchTree<T extends Comparable<? super T>> extends BinaryTre
 		return result;
 	}
 	
+	/**
+	 * method: removeEntry
+	 * @param rootNode
+	 * @param entry
+	 * @param oldEntry
+	 * @return
+	 * purpose: removes an entry from the search tree
+	 */
 	private BinaryNode<T> removeEntry(BinaryNode<T> rootNode, T entry, ReturnObject oldEntry){
 		if(rootNode != null) {
 			T rootData = rootNode.getData();
@@ -68,6 +83,12 @@ public class BinarySearchTree<T extends Comparable<? super T>> extends BinaryTre
 		return rootNode;
 	}
 	
+	/**
+	 * method: removeFromRoot
+	 * @param rootNode
+	 * @return
+	 * purpose: remove a node from the root
+	 */
 	private BinaryNode<T> removeFromRoot(BinaryNode<T> rootNode){
 		if(rootNode.hasLeftChild() && rootNode.hasRightChild()) {
 			BinaryNode<T> leftSubtreeRoot = rootNode.getLeftChild();
@@ -82,6 +103,12 @@ public class BinarySearchTree<T extends Comparable<? super T>> extends BinaryTre
 		return rootNode;
 	}
 	
+	/**
+	 * method: findLargest
+	 * @param rootNode
+	 * @return
+	 * purpose: find the node with the largest value
+	 */
 	private BinaryNode<T> findLargest(BinaryNode<T> rootNode){
 		if(rootNode.hasRightChild()) {
 			rootNode = findLargest(rootNode.getRightChild());
@@ -89,6 +116,12 @@ public class BinarySearchTree<T extends Comparable<? super T>> extends BinaryTre
 		return rootNode;
 	}
 	
+	/**
+	 * method: removeLargest
+	 * @param rootNode
+	 * @return
+	 * purpose: remove the node with the largest value
+	 */
 	private BinaryNode<T> removeLargest(BinaryNode<T> rootNode){
 		if(rootNode.hasRightChild()) {
 			BinaryNode<T> rightChild = rootNode.getRightChild();
@@ -100,6 +133,13 @@ public class BinarySearchTree<T extends Comparable<? super T>> extends BinaryTre
 		return rootNode;
 	}
 	
+	/**
+	 * method: findEntry
+	 * @param rootNode
+	 * @param entry
+	 * @return
+	 * purpose: find the node with the specified value
+	 */
 	private T findEntry(BinaryNode<T> rootNode, T entry) {
 		T result = null;
 		if(rootNode != null) {
@@ -116,16 +156,25 @@ public class BinarySearchTree<T extends Comparable<? super T>> extends BinaryTre
 	}
 	
 	/************ INTERFACE OVERRIDES ************/
+	/* (non-Javadoc)
+	 * @see TreePackage.SearchTreeInterface#contains(java.lang.Comparable)
+	 */
 	@Override
 	public boolean contains(T entry) {
 		return getEntry(entry) != null;
 	}
 
+	/* (non-Javadoc)
+	 * @see TreePackage.SearchTreeInterface#getEntry(java.lang.Comparable)
+	 */
 	@Override
 	public T getEntry(T entry) {
 		return findEntry(getRootNode(), entry);
 	}
 
+	/* (non-Javadoc)
+	 * @see TreePackage.SearchTreeInterface#add(java.lang.Comparable)
+	 */
 	@Override
 	public T add(T newEntry) {
 		T result = null;
@@ -137,6 +186,9 @@ public class BinarySearchTree<T extends Comparable<? super T>> extends BinaryTre
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see TreePackage.SearchTreeInterface#remove(java.lang.Comparable)
+	 */
 	@Override
 	public T remove(T entry) {
 		ReturnObject oldEntry = new ReturnObject();
@@ -146,15 +198,25 @@ public class BinarySearchTree<T extends Comparable<? super T>> extends BinaryTre
 	}
 	
 	/************ DISABLE BINARY TREE INTERFACE METHODS ************/
+	/* (non-Javadoc)
+	 * @see TreePackage.BinaryTree#setTree(java.lang.Comparable)
+	 */
 	public void setTree(T rootData) {
 		throw new UnsupportedOperationException();
 	}
 	
+	/* (non-Javadoc)
+	 * @see TreePackage.BinaryTree#setTree(java.lang.Comparable, TreePackage.BinaryTreeInterface, TreePackage.BinaryTreeInterface)
+	 */
 	public void setTree(T rootData, BinaryTreeInterface<T> leftTree, BinaryTreeInterface<T> rightTree) {
 		throw new UnsupportedOperationException();
 	}
 	
 	/************ INNER CLASSES ************/
+	/**
+	 * @author derek
+	 * Generic return object class for use in this tree
+	 */
 	class ReturnObject {
 		T data;
 		
@@ -162,10 +224,20 @@ public class BinarySearchTree<T extends Comparable<? super T>> extends BinaryTre
 			data = null;
 		}
 		
+		/**
+		 * method: set
+		 * @param newData
+		 * purpose: mutator method
+		 */
 		public void set(T newData) {
 			data = newData;
 		}
 		
+		/**
+		 * method: get
+		 * @return
+		 * purpose: accessor method
+		 */
 		public T get() {
 			return data;
 		}

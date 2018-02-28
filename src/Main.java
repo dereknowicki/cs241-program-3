@@ -4,7 +4,7 @@
  * class: CS 241 – Data Structures and Algorithms II
  * 
  * assignment: program 3
- * date last modified: 2018-02-26
+ * date last modified: 2018-02-28
  * 
  * purpose: This program fills a Binary Search Tree and a Red Black
  * Tree with 100 random numbers. The program gives the user options
@@ -19,8 +19,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import TreePackage.BinarySearchTree;
-import TreePackage.Logger;
-import TreePackage.RedBlackTree;
+import TreePackage.RedBlackTree;	
 
 public class Main {
 	private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -28,6 +27,10 @@ public class Main {
 	private static BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>();
 	private static RedBlackTree<Integer> rbt = new RedBlackTree<Integer>();
 	
+	/**
+	 * method: printCommandMenu
+	 * purpose: prints the command menu for the user
+	 */
 	static void printCommandMenu() {
 		System.out.println("Please Enter a Command");
 		System.out.println("I: Insert a value");
@@ -41,6 +44,10 @@ public class Main {
 		System.out.println("RBT:"+rbt.inorderTraverse());
 	}
 	
+	/**
+	 * method: loadTrees
+	 * purpose: loads the trees with random numbers
+	 */
 	static void loadTrees() {
 		Random rand = new Random();
 		HashSet<Integer> pete = new HashSet<Integer>();
@@ -54,6 +61,10 @@ public class Main {
 		}
 	}
 	
+	/**
+	 * method: getCommand
+	 * purpose: processes user input
+	 */
 	static void getCommand() {
 		String cmdString = null;
 		try {
@@ -64,6 +75,10 @@ public class Main {
 		command = cmdString.split(" ");
 	}
 	
+	/**
+	 * method: handleInsertCommand
+	 * purpose: inserts a value provided by the user
+	 */
 	static void handleInsertCommand() {
 		if(command.length > 1) {
 			bst.add(Integer.parseInt(command[1]));
@@ -73,6 +88,10 @@ public class Main {
 		}
 	}
 
+	/**
+	 * method: handleDeleteCommand
+	 * purpose: removes a value provided by the user
+	 */
 	static void handleDeleteCommand() {
 		if(command.length > 1) {
 			bst.remove(Integer.parseInt(command[1]));
@@ -82,11 +101,20 @@ public class Main {
 		}
 	}
 	
+	/**
+	 * method: handleCountCommand
+	 * purpose: prints to the console the number of leaves for each tree
+	 */
 	static void handleCountCommand() {
 		System.out.println("BST Leaves: "+bst.getNumberOfLeaves());
 		System.out.println("RBT Leaves: "+rbt.getNumberOfLeaves());
 	}
 	
+	/**
+	 * method: handleRangeCommand
+	 * purpose: prints all of the values within the range
+	 * provided by the user
+	 */
 	static void handleRangeCommand() {
 		if(command.length > 2) {
 			System.out.println(bst.getNodesInRange(new Integer(command[1]), new Integer(command[2])));
@@ -96,6 +124,11 @@ public class Main {
 		}
 	}
 	
+	/**
+	 * method: handlePreOrderDeleteCommand
+	 * purpose: deletes the first 20 entries of a preorder traversal
+	 * and then prints the resulting tree to the console
+	 */
 	static void handlePreOrderDeleteCommand() {
 		List<Integer> bstPre = bst.preorderTraverse();
 		List<Integer> rbtPre = rbt.preorderTraverse();
@@ -111,6 +144,11 @@ public class Main {
 		}
 	}
 	
+	/**
+	 * method: main
+	 * @param args
+	 * purpose: main method for program
+	 */
 	public static void main(String[] args) {
 		loadTrees();
 		
