@@ -82,4 +82,16 @@ public class RbNode<T> {
 	public RbNode<T> getRightChild(){
 		return rightChild;
 	}
+	
+	public int getHeight() {
+		return getHeight(this);
+	}
+	
+	private int getHeight(RbNode<T> node) {
+		int height = 0;
+		if(node != null) {
+			height = 1 + Math.max(getHeight(node.getLeftChild()), getHeight(node.getRightChild()));
+		}
+		return height;
+	}
 }

@@ -13,8 +13,12 @@
 
 package TreePackage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RedBlackTree<T extends Comparable<? super T>> implements BinaryTreeInterface<T> {
 	protected RbNode<T> root;
+	Logger log = new Logger();
 	
 	public RedBlackTree() {
 		root = null;
@@ -26,6 +30,35 @@ public class RedBlackTree<T extends Comparable<? super T>> implements BinaryTree
 	
 	public RedBlackTree(T rootData, RedBlackTree<T> leftTree, RedBlackTree<T> rightTree) {
 		privateSetTree(rootData, leftTree, rightTree);
+	}
+	
+	public List<T> preorderTraverse() {
+		return preorderTraverse(root);
+	}
+	
+	private List<T> preorderTraverse(RbNode<T> node) {
+		List<T> traversal = new ArrayList<T>();
+		if(node != null) {
+			traversal.add(node.getData());
+			traversal.addAll(preorderTraverse(node.getLeftChild()));
+			traversal.addAll(preorderTraverse(node.getRightChild()));
+		}
+		
+		return traversal;
+	}
+	
+	public List<T> inorderTraverse() {
+		return inorderTraverse(root);
+	}
+	
+	private List<T> inorderTraverse(RbNode<T> node) {
+		List<T> inorder = new ArrayList<T>();
+		if(node != null) {
+			inorder.addAll(inorderTraverse(node.getLeftChild()));
+			inorder.add(node.getData());
+			inorder.addAll(inorderTraverse(node.getRightChild()));
+		}
+		return inorder;
 	}
 	
 	private void privateSetTree(T rootData, RedBlackTree<T> leftTree, RedBlackTree<T> rightTree) {
@@ -53,28 +86,36 @@ public class RedBlackTree<T extends Comparable<? super T>> implements BinaryTree
 	public T add(T newEntry) {
 		T result = null;
 		if (isEmpty()) {
+//			log.println("tree is empty adding root ->", newEntry);
 			root = new RbNode<T>(newEntry);
 		} else {
+			
 			result = addEntry(root, newEntry);
 		}
 		return result;
 	}
 	
 	private T addEntry(RbNode<T> rootNode, T newEntry) {
+//		log.println("addEntry->", newEntry, "to", rootNode.data);
 		assert rootNode != null;
 		T result = null;
 		int comparison = newEntry.compareTo(rootNode.getData());
 		
 		if(comparison == 0) {
+//			log.println("addEntry comparison == 0");
 			result = rootNode.getData();
 			rootNode.setData(newEntry);
 		}else if (comparison < 0) {
+//			log.println("addEntry comparison < 0");
 			if(rootNode.hasLeftChild()) {
+//				log.println("addEntry hasLeftChild");
 				result = addEntry(rootNode.getLeftChild(), newEntry);
 			} else {
+//				log.println("addEntry hasLeftChild == false");
 				rootNode.setLeftChild(new RbNode<>(newEntry));
 			}
 		} else {
+//			log.println("addEntry comparison > 0");
 			assert comparison > 0;
 			if(rootNode.hasRightChild()) {
 				result = addEntry(rootNode.getRightChild(), newEntry);
@@ -93,8 +134,7 @@ public class RedBlackTree<T extends Comparable<? super T>> implements BinaryTree
 
 	@Override
 	public int getHeight() {
-		// TODO Auto-generated method stub
-		return 0;
+		return root != null ? root.getHeight() : 0;
 	}
 
 	@Override
@@ -105,8 +145,7 @@ public class RedBlackTree<T extends Comparable<? super T>> implements BinaryTree
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return root == null;
 	}
 
 	@Override
@@ -126,5 +165,4 @@ public class RedBlackTree<T extends Comparable<? super T>> implements BinaryTree
 		// TODO Auto-generated method stub
 		
 	}
-
 }
