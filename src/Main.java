@@ -19,6 +19,7 @@ import java.util.HashSet;
 import java.util.Random;
 
 import TreePackage.BinarySearchTree;
+import TreePackage.Logger;
 import TreePackage.RedBlackTree;
 
 public class Main {
@@ -42,7 +43,7 @@ public class Main {
 	static void loadTrees() {
 		Random rand = new Random();
 		HashSet<Integer> pete = new HashSet<Integer>();
-		while(pete.size() < 100) {
+		while(pete.size() < 5) {
 			pete.add(rand.nextInt(1000));
 		}
 				
@@ -50,6 +51,12 @@ public class Main {
 			bst.add(new Integer(pete.toArray()[i].toString()));
 			rbt.add(new Integer(pete.toArray()[i].toString()));
 		}
+		Logger.println(pete);
+//		Logger.println(bst.preorderTraverse());
+//		Logger.println(rbt.preorderTraverse());
+//		Logger.println(bst.getHeight());
+//		Logger.println(rbt.getHeight());
+
 	}
 	
 	static void getCommand() {
@@ -77,7 +84,8 @@ public class Main {
 	}
 	
 	static void handleCountCommand() {
-		
+		System.out.println("BST Leaves: "+bst.getNumberOfLeaves());
+		System.out.println("RBT Leaves: "+rbt.getNumberOfLeaves());
 	}
 	
 	static void handleRangeCommand() {
@@ -92,7 +100,7 @@ public class Main {
 		loadTrees();
 		
 		while(true) {
-			printCommandMenu();
+//			printCommandMenu();
 			getCommand();
 			
 			switch(Character.toUpperCase(command[0].charAt(0))) {
