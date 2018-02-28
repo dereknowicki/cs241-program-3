@@ -138,4 +138,9 @@ public class BinaryTree<T> implements BinaryTreeInterface<T>{
 		privateSetTree(rootData, (BinaryTree<T>)leftTree, (BinaryTree<T>)rightTree);
 	}
 
+	@Override
+	public int getNumberOfLeaves() {
+		return root.getNumberOfLeaves();
+	}
+
 }

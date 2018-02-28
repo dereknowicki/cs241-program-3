@@ -93,4 +93,23 @@ public class RbNode<T> {
 		}
 		return height;
 	}
+	
+	public int getNumberOfLeaves() {
+		return getNumberOfLeaves(this);
+	}
+	
+	private int getNumberOfLeaves(RbNode<T> node) {
+		int leaves = 0;
+		if(!(node.hasLeftChild() || node.hasRightChild())) {
+			leaves = 1;
+		}
+		if(node.hasLeftChild()) {
+			leaves += getNumberOfLeaves(node.getLeftChild());
+		}
+		if(node.hasRightChild()) {
+			leaves += getNumberOfLeaves(node.getRightChild());
+		}
+		
+		return leaves;
+	}
 }

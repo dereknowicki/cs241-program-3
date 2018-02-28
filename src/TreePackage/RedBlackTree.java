@@ -164,4 +164,9 @@ public class RedBlackTree<T extends Comparable<? super T>> implements BinaryTree
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public int getNumberOfLeaves() {
+		return root.getNumberOfLeaves();
+	}
 }

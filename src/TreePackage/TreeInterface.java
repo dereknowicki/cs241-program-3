@@ -17,6 +17,7 @@ public interface TreeInterface<T> {
 	public T getRootData();
 	public int getHeight();
 	public int getNumberOfNodes();
+	public int getNumberOfLeaves();
 	public boolean isEmpty();
 	public void clear();
 }
