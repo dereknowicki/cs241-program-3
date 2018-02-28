@@ -14,7 +14,7 @@
 package TreePackage;
 
 public class BinaryNode<T> {
-	private T data;
+	protected T data;
 	private BinaryNode<T> leftChild;
 	private BinaryNode<T> rightChild;
 	
